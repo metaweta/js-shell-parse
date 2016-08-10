@@ -28,10 +28,10 @@ function getSource () {
     plugins: [overrideAction],
     overrideActionPlugin: require('./overrides')
   })
-  return 'module.exports = parse\n\n' +
+  return 'define(() => {\n\n' +
          parse + '\n' +
          'var parser=' + parserSource + '\n' +
-         'module.exports.SyntaxError = parser.SyntaxError\n';
+         'return {parse, parser};\n});\n';
 
 }
 

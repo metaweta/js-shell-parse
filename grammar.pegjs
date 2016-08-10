@@ -135,10 +135,13 @@ readableVariableName = writableVariableName / '?'  /* todo, other special vars *
 variableSubstitution = '${' expr:[^}]* '}'
 
 commandSubstitution
- = parenCommandSubstitution / backQuote
+ = parenCommandSubstitution / atCommandSubstitution / backQuote
 
 parenCommandSubstitution
  = '$(' commands:statementList ')'
+
+atCommandSubstitution
+ = '@(' commands:statementList ')'
 
 backQuote
  = '`' input:backQuoteChar+ '`'

@@ -11,13 +11,13 @@
  * they are defined by the generated parser.
  */
 
-var isArray = require('isarray') // not actually used, just for readability
+var isArray = Array.isArray; // not actually used, just for readability
 
 var rules = exports.rules = {}
 
 exports.initializer = [
-  'var isArray = require("isarray")',
-  'var map = require("array-map")',
+  'var isArray = Array.isArray;',
+  'var map = (m => m.call.bind(m))([].map);',
   function join (arr) {
     return arr.join("")
   },
@@ -263,6 +263,13 @@ rules.escapedQuote = function (character) {
 rules.parenCommandSubstitution = function (commands) {
   return {
     type: 'commandSubstitution',
+    commands: commands
+  }
+}
+
+rules.atCommandSubstitution = function (commands) {
+  return {
+    type: 'atCommandSubstitution',
     commands: commands
   }
 }
