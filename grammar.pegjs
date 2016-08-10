@@ -97,7 +97,7 @@ barewordChar
  = '\\' chr:barewordMeta { return chr }
  / !barewordMeta chr:.   { return chr }
 
-barewordMeta = [$"';&<>\n()\[*?|` ]
+barewordMeta = [$"';&<>\n()\[*?|` @]
 
 glob
  = barewordChar* ('*' / '?' / characterRange / braceExpansion)+ barewordChar*
